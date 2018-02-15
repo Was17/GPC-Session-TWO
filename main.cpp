@@ -45,9 +45,14 @@ void initFunc() {
     
 }
 
-void funReshape(int w, int h) {
+void funReshape(int wnew, int hnew) {
     
-    printf("Dimensiones %dx%d pixeles\n", w, h);
+ // Configuración del Viewport
+    glViewport(0, 0, wnew, hnew);
+
+ // Captura de w y h
+    w = wnew;
+    h = hnew;
     
 }
 
