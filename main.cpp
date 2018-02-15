@@ -5,6 +5,8 @@
 void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
+void drawTriangulo();
+void drawPuntos();
 
 using namespace std;
 
@@ -43,6 +45,10 @@ int main(int argc, char** argv) {
 
 void initFunc() {
     
+ // Modelo de sombreado
+    glShadeModel(GL_FLAT);
+    //glShadeModel(GL_SMOOTH);
+    
 }
 
 void funReshape(int wnew, int hnew) {
@@ -72,6 +78,18 @@ void funDisplay() {
     gluPerspective(fovy,aspectRatio,nplane,fplane);
 
  // Dibujamos un triángulo
+    drawTriangulo();
+    
+ // Dibujamos dos puntos
+    drawPuntos();
+
+ // Intercambiamos los buffers
+    glutSwapBuffers();
+    
+}
+
+void drawTriangulo() {
+    
     glBegin(GL_TRIANGLES);
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(-0.5f, -0.5f, -2.0f);
@@ -82,8 +100,16 @@ void funDisplay() {
         glColor3f(0.0f, 0.0f, 1.0f);
         glVertex3f( 0.0f,  0.5f, -2.0f);
     glEnd();
-    
- // Intercambiamos los buffers
-    glutSwapBuffers();
-    
+
+}
+
+void drawPuntos() {
+
+    glPointSize(10);
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glBegin(GL_POINTS);
+        glVertex3f( 0.0f, 0.0f, -3.0f);
+        glVertex3f( 0.5f, 0.5f, -3.0f);
+    glEnd();
+
 }
