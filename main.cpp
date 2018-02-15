@@ -8,12 +8,14 @@ void funDisplay();
 void drawCubo();
 void drawTriangulo();
 void drawPuntos();
+void funKeyboard(unsigned char key, int x, int y);
 
 using namespace std;
 
 // Variables globales
 int w = 500;
 int h = 500;
+GLfloat colorPuntos[] = { 1.0f, 1.0f, 1.0f };
 
 int main(int argc, char** argv) {
 
@@ -23,6 +25,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(w,h);
     glutInitWindowPosition(50,50);
     glutCreateWindow("Sesion 2");
+    
     
  // Inicializamos GLEW
     GLenum err = glewInit();
@@ -37,7 +40,7 @@ int main(int argc, char** argv) {
  // Configuración CallBacks
     glutReshapeFunc(funReshape);
     glutDisplayFunc(funDisplay);
-    
+    glutKeyboardFunc(funKeyboard);
  // Bucle principal
     glutMainLoop();
     
@@ -78,7 +81,7 @@ void funDisplay() {
     
  // Matriz de Proyección P (Cámara)
     GLfloat aspectRatio = (GLfloat)w/(GLfloat)h;    
-    GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
+    GLfloat fovy = 50.0f, nplane = 2.1f, fplane = 20.0f;
     gluPerspective(fovy,aspectRatio,nplane,fplane);
 
  // Dibujamos un triángulo
@@ -170,13 +173,27 @@ void drawCubo(){
     
     
 }
+
 void drawPuntos() {
 
     glPointSize(10);
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glColor3fv(colorPuntos);
     glBegin(GL_POINTS);
         glVertex3f( 0.0f, 0.0f, -3.0f);
         glVertex3f( 0.5f, 0.5f, -3.0f);
     glEnd();
 
+}
+
+void funKeyboard(unsigned char key, int x, int y) {
+   
+    switch(key) {
+        case 'r': colorPuntos[0] = 1.0f; colorPuntos[1] = 0.0f; colorPuntos[2] = 0.0f; break;
+        case 'g': colorPuntos[0] = 0.0f; colorPuntos[1] = 1.0f; colorPuntos[2] = 0.0f; break;
+        case 'b': colorPuntos[0] = 0.0f; colorPuntos[1] = 0.0f; colorPuntos[2] = 1.0f; break;
+        default:  colorPuntos[0] = 1.0f; colorPuntos[1] = 1.0f; colorPuntos[2] = 1.0f; break;
+    }
+    
+    glutPostRedisplay();
+        
 }
