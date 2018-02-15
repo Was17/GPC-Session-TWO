@@ -10,13 +10,15 @@ void drawTriangulo();
 void drawPuntos();
 void funKeyboard(unsigned char key, int x, int y);
 
+void funIdle();
+
 using namespace std;
 
 // Variables globales
 int w = 500;
 int h = 500;
 GLfloat colorPuntos[] = { 1.0f, 1.0f, 1.0f };
-
+bool dibujar=true;
 int main(int argc, char** argv) {
 
  // Inicializamos GLUT
@@ -41,6 +43,7 @@ int main(int argc, char** argv) {
     glutReshapeFunc(funReshape);
     glutDisplayFunc(funDisplay);
     glutKeyboardFunc(funKeyboard);
+    glutIdleFunc(funIdle);
  // Bucle principal
     glutMainLoop();
     
@@ -48,7 +51,7 @@ int main(int argc, char** argv) {
 }
 
 void initFunc() {
-    
+    glPointSize(10);
  // Test de profundidad
     glEnable(GL_DEPTH_TEST);
     
@@ -176,7 +179,6 @@ void drawCubo(){
 
 void drawPuntos() {
 
-    glPointSize(10);
     glColor3fv(colorPuntos);
     glBegin(GL_POINTS);
         glVertex3f( 0.0f, 0.0f, -3.0f);
@@ -196,4 +198,20 @@ void funKeyboard(unsigned char key, int x, int y) {
     
     glutPostRedisplay();
         
+}
+void funIdle() {
+    
+    if(dibujar) {
+        glPointSize(10);
+        dibujar = false;
+    }
+    else {
+        glPointSize(50);
+        dibujar = true;  
+    }
+    
+    Sleep(500);
+    
+    glutPostRedisplay();
+    
 }
