@@ -5,6 +5,7 @@
 void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
+void drawCubo();
 void drawTriangulo();
 void drawPuntos();
 
@@ -81,7 +82,7 @@ void funDisplay() {
     gluPerspective(fovy,aspectRatio,nplane,fplane);
 
  // Dibujamos un triángulo
-    drawTriangulo();
+    drawCubo();
     
  // Dibujamos dos puntos
     drawPuntos();
@@ -105,7 +106,70 @@ void drawTriangulo() {
     glEnd();
 
 }
+void drawCubo(){
+      glBegin(GL_POLYGON);
+        glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -2.0f);
+        
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(-0.5f, -0.5f, -4.0f);
 
+     
+    glEnd();
+    glBegin(GL_POLYGON);
+        glColor3f(0.0f, 1.0f, 0.0f);
+      
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+
+     
+    glEnd();
+     glBegin(GL_POLYGON);
+        glColor3f(0.5f, 0.5f, 0.0f);
+      glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+
+     
+    glEnd();
+     glBegin(GL_POLYGON);
+        glColor3f(0.5f, 0.0f, 0.5f);
+      glVertex3f(0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+
+     
+    glEnd();
+        glBegin(GL_POLYGON);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+        
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+
+     
+    glEnd();
+    glBegin(GL_POLYGON);
+        glColor3f(1.0f, 1.0f, 1.0f);
+      
+        glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+        
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+
+     
+    glEnd();
+    
+    
+}
 void drawPuntos() {
 
     glPointSize(10);
