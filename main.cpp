@@ -100,7 +100,8 @@ void funDisplay() {
 
 void drawTriangulo() {
     
-    glBegin(GL_POINTS);
+glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glBegin(GL_POLYGON);
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(-0.5f, -0.5f, -2.0f);
 
