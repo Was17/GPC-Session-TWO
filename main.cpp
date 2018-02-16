@@ -84,11 +84,11 @@ void funDisplay() {
     
  // Matriz de Proyección P (Cámara)
     GLfloat aspectRatio = (GLfloat)w/(GLfloat)h;    
-    GLfloat fovy = 50.0f, nplane = 2.1f, fplane = 20.0f;
+    GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
     gluPerspective(fovy,aspectRatio,nplane,fplane);
 
  // Dibujamos un triángulo
-    drawCubo();
+    drawTriangulo();
     
  // Dibujamos dos puntos
     drawPuntos();
@@ -100,7 +100,7 @@ void funDisplay() {
 
 void drawTriangulo() {
     
-    glBegin(GL_TRIANGLES);
+    glBegin(GL_POINTS);
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(-0.5f, -0.5f, -2.0f);
 
@@ -176,12 +176,12 @@ void drawCubo(){
     
     
 }
-
+float x;
 void drawPuntos() {
-
+    x=-3.0f;
     glColor3fv(colorPuntos);
     glBegin(GL_POINTS);
-        glVertex3f( 0.0f, 0.0f, -3.0f);
+        glVertex3f( 0.0f, 0.0f, x);
         glVertex3f( 0.5f, 0.5f, -3.0f);
     glEnd();
 
@@ -202,10 +202,12 @@ void funKeyboard(unsigned char key, int x, int y) {
 void funIdle() {
     
     if(dibujar) {
+       
         glPointSize(10);
         dibujar = false;
     }
     else {
+        x=-5.0f;
         glPointSize(50);
         dibujar = true;  
     }
