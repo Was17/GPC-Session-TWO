@@ -5,7 +5,8 @@
 void initFunc();
 void funReshape(int w, int h);
 void funDisplay();
-void drawCubo();
+void drawCuboPolygon();
+void drawCuboQuads();
 void drawTriangulo();
 void drawPuntos();
 void funKeyboard(unsigned char key, int x, int y);
@@ -87,6 +88,7 @@ void funDisplay() {
     GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
     gluPerspective(fovy,aspectRatio,nplane,fplane);
 
+    drawCuboQuads();
  // Dibujamos un triángulo
     drawTriangulo();
     
@@ -113,7 +115,7 @@ glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glEnd();
 
 }
-void drawCubo(){
+void drawCuboPolygon(){
       glBegin(GL_POLYGON);
         glColor3f(1.0f, 0.0f, 0.0f);
         glVertex3f(-0.5f, -0.5f, -2.0f);
@@ -164,6 +166,72 @@ void drawCubo(){
      
     glEnd();
     glBegin(GL_POLYGON);
+        glColor3f(1.0f, 1.0f, 1.0f);
+      
+        glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+        
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+
+     
+    glEnd();
+    
+    
+}
+void drawCuboQuads(){
+    
+glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+      glBegin(GL_QUADS);
+        glColor3f(1.0f, 0.0f, 0.0f);
+        glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -2.0f);
+        
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+
+     
+    glEnd();
+    glBegin(GL_QUADS);
+        glColor3f(0.0f, 1.0f, 0.0f);
+      
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+
+     
+    glEnd();
+     glBegin(GL_QUADS);
+        glColor3f(0.5f, 0.5f, 0.0f);
+      glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+
+     
+    glEnd();
+     glBegin(GL_QUADS);
+        glColor3f(0.5f, 0.0f, 0.5f);
+      glVertex3f(0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+
+     
+    glEnd();
+        glBegin(GL_QUADS);
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+        
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+
+     
+    glEnd();
+    glBegin(GL_QUADS);
         glColor3f(1.0f, 1.0f, 1.0f);
       
         glVertex3f(-0.5f, -0.5f, -2.0f);
