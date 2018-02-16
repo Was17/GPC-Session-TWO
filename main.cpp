@@ -99,7 +99,7 @@ void funDisplay() {
 }
 
 void drawTriangulo() {
-    
+     glLineWidth(3.0f);
 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glBegin(GL_POLYGON);
         glColor3f(1.0f, 0.0f, 0.0f);
