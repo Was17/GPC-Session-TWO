@@ -7,6 +7,7 @@ void funReshape(int w, int h);
 void funDisplay();
 void drawCuboPolygon();
 void drawCuboQuads();
+void drawCuboQuadStrip();
 void drawTriangulo();
 void drawPuntos();
 void funKeyboard(unsigned char key, int x, int y);
@@ -85,15 +86,10 @@ void funDisplay() {
     
  // Matriz de Proyección P (Cámara)
     GLfloat aspectRatio = (GLfloat)w/(GLfloat)h;    
-    GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
+    GLfloat fovy = 50.0f, nplane = 2.1f, fplane = 20.0f;
     gluPerspective(fovy,aspectRatio,nplane,fplane);
 
-    drawCuboQuads();
- // Dibujamos un triángulo
-    drawTriangulo();
-    
- // Dibujamos dos puntos
-    drawPuntos();
+    drawCuboQuadStrip();
 
  // Intercambiamos los buffers
     glutSwapBuffers();
@@ -232,6 +228,69 @@ glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
      
     glEnd();
     glBegin(GL_QUADS);
+        glColor3f(1.0f, 1.0f, 1.0f);
+      
+        glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+        
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+
+     
+    glEnd();
+    
+    
+}
+void drawCuboQuadStrip(){
+    
+glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+      glBegin(GL_QUAD_STRIP);
+      
+   
+      glColor3f(1.0f, 0.0f, 0.0f);
+      
+        glVertex3f(0.5f, -0.5f, -2.0f);
+        
+        glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+      glColor3f(0.5f, 0.5f, 0.0f);
+      
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+      glVertex3f(-0.5f, -0.5f, -2.0f);
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+        
+        glColor3f(0.0f, 1.0f, 0.0f);
+      
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(-0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+
+     
+        
+
+     
+    glEnd();
+     glBegin(GL_QUADS);
+        glColor3f(0.5f, 0.0f, 0.5f);
+      glVertex3f(0.5f, -0.5f, -2.0f);
+        glVertex3f(0.5f, -0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+
+     
+        glColor3f(0.0f, 0.0f, 1.0f);
+        glVertex3f(-0.5f, 0.5f, -2.0f);
+        glVertex3f(0.5f, 0.5f, -2.0f);
+        
+        glVertex3f(0.5f, 0.5f, -4.0f);
+        glVertex3f(-0.5f, 0.5f, -4.0f);
+
+     
+        
         glColor3f(1.0f, 1.0f, 1.0f);
       
         glVertex3f(-0.5f, -0.5f, -2.0f);
