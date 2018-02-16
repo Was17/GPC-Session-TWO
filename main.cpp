@@ -86,7 +86,7 @@ void funDisplay() {
     
  // Matriz de Proyección P (Cámara)
     GLfloat aspectRatio = (GLfloat)w/(GLfloat)h;    
-    GLfloat fovy = 50.0f, nplane = 2.1f, fplane = 20.0f;
+    GLfloat fovy = 50.0f, nplane = 0.1f, fplane = 20.0f;
     gluPerspective(fovy,aspectRatio,nplane,fplane);
 
     drawCuboQuadStrip();
